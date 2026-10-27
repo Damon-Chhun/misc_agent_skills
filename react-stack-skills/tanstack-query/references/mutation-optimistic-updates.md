@@ -45,13 +45,13 @@ const mutation = useMutation({
       old.map(t => t.id === newTodo.id ? newTodo : t)
     )
 
-    // 4. Return context for rollback
+    // 4. Return a snapshot for rollback (passed to callbacks as onMutateResult)
     return { previousTodos }
   },
-  onError: (error, newTodo, context) => {
+  onError: (error, newTodo, onMutateResult) => {
     // 5. Rollback on error
-    if (context?.previousTodos) {
-      queryClient.setQueryData(['todos'], context.previousTodos)
+    if (onMutateResult?.previousTodos) {
+      queryClient.setQueryData(['todos'], onMutateResult.previousTodos)
     }
     toast.error('Failed to update')
   },

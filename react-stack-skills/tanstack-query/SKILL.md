@@ -102,16 +102,8 @@ Reference these guidelines when:
 
 ## How to Use
 
-Run in the project root first:
+Read `references/<rule-id>.md` for each rule above that matches the task: why it matters, then incorrect vs. correct code.
 
-```bash
-npx -y @pymodel/react-frontend-skills detect                       # installed vs. targeted versions
-npx -y @pymodel/react-frontend-skills scan --skill tanstack-query  # deprecated APIs → rule IDs
-```
+## Version Notes
 
-Read `references/<rule-id>.md` for each rule above that matches the task and for each `scan` hit: why it matters, then incorrect vs. correct code.
-
-## Related Skills
-
-- For mocking API responses in tests, see `msw` skill
-- For React 19 data fetching patterns, see `react` skill
+`queryClient.query()` and `queryClient.infiniteQuery()` (used in the `prefetch-*`, `tquery-options-pattern` and `render-notify-props` rules) require `@tanstack/react-query` 5.102 or later. On earlier v5 versions, use `prefetchQuery`, `fetchQuery`, `ensureQueryData` and `prefetchInfiniteQuery` instead. Check the installed version before suggesting the newer APIs.

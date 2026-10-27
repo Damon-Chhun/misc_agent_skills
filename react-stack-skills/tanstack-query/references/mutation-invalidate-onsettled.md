@@ -50,8 +50,8 @@ const mutation = useMutation({
 
     return { previous }
   },
-  onError: (_error, _variables, context) => {
-    queryClient.setQueryData(['todos'], context?.previous)
+  onError: (_error, _variables, onMutateResult) => {
+    queryClient.setQueryData(['todos'], onMutateResult?.previous)
   },
   onSettled: async () => {
     await queryClient.invalidateQueries({ queryKey: ['todos'] })

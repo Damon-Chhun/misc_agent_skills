@@ -63,7 +63,7 @@ const queryClient = new QueryClient({
     },
   }),
   mutationCache: new MutationCache({
-    onError: (error, variables, context, mutation) => {
+    onError: (error, variables, onMutateResult, mutation, context) => {
       if (error instanceof ApiError && error.status >= 500) {
         toast.error('Failed to save. Please try again.')
       }

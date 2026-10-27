@@ -13,14 +13,14 @@ Infinite queries have multiple loading states: initial load, fetching next page,
 
 ```typescript
 function PostsList() {
-  const { data, isPending, fetchNextPage, hasNextPage } = useInfiniteQuery({
+  const { data, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery({
     queryKey: ['posts'],
     queryFn: fetchPosts,
     // ...
   })
 
-  // isPending is true during initial load AND fetchNextPage!
-  if (isPending) return <FullPageSpinner /> // Flashes on load more
+  // isFetching is true during initial load, fetchNextPage AND background refetch
+  if (isFetching) return <FullPageSpinner /> // Flashes on load more; data is undefined on first render too
 
   return (
     <div>

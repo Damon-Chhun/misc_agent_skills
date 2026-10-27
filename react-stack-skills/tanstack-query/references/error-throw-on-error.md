@@ -62,7 +62,7 @@ useQuery({
 **Combining with Suspense:**
 
 ```typescript
-// useSuspenseQuery always throws errors (no throwOnError option)
+// useSuspenseQuery has no throwOnError option; it throws when there is no cached data
 function UserProfile() {
   const { data } = useSuspenseQuery({
     queryKey: ['user'],
